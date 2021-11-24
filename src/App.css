@@ -1,38 +1,81 @@
-.App {
+:root {
+  --clr-primary-1: #fcfcfc;
+  --clr-primary-2: #31c6a9;
+  --clr-primary-3: #5bd2b6;
+  --clr-primary-4: #85dfc4;
+  --clr-primary-5: #afecd2;
+}
+
+body {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  background-color: var(--clr-primary-2);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: var(--clr-primary-1);
 }
 
-.App-link {
-  color: #61dafb;
+.btn {
+  border-radius: 1rem;
+  background-color: var(--clr-primary-1);
+  display: inline-block;
+  color: var(--clr-primary-2);
+  cursor: pointer;
+  padding: 0.25rem 0.75rem;
+  border-color: transparent;
+  text-transform: capitalize;
+  font-size: 1.25rem;
+  margin-top: 2rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  transition: all 0.225s linear;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn:hover {
+  /* font-size: 2rem; */
+  background-color: var(--clr-primary-4);
+  color: var(--clr-primary-1);
+}
+
+.form {
+  background: var(--clr-primary-1);
+  max-width: 450px;
+  margin: 0 auto;
+  margin-bottom: 4rem;
+  padding: 1rem 2rem;
+  border-radius: 0.25rem;
+}
+.form input {
+  background: var(--clr-primary-1);
+  border-color: transparent;
+  border-radius: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.form-control {
+  margin: 0.5rem 0;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  align-items: center;
+}
+.form button {
+  border-radius: 1rem;
+  background-color: var(--clr-primary-2);
+  display: inline-block;
+  color: var(--clr-primary-1);
+  cursor: pointer;
+  padding: 0.25rem 0.75rem;
+  border-color: transparent;
+  text-transform: capitalize;
+  font-size: 1.25rem;
+  margin-top: 2rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  transition: all 0.225s linear;
 }

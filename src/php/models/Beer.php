@@ -11,8 +11,16 @@ class Beer
     private $scent;
     private $taste;
 
-    public function __construct($styleName, $styleCountry, $description, $strength, $color, $foam, $scent, $taste)
-    {
+    public function __construct(
+        string $styleName,
+        string $styleCountry,
+        string $description,
+        int $strength,
+        object $color,
+        object $foam,
+        object $scent,
+        object $taste
+    ) {
         $this->styleName = $styleName;
         $this->styleCountry = $styleCountry;
         $this->description = $description;
@@ -23,43 +31,58 @@ class Beer
         $this->taste = $taste;
     }
 
-    public function getStyleName()
+    public function getStyleName(): string
     {
         return $this->styleName;
     }
 
-    public function getStyleCountry()
+    public function getStyleCountry(): string
     {
         return $this->styleCountry;
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
 
-    public function getStrength()
+    public function getStrength(): int
     {
         return $this->strength;
     }
 
-    public function getColor()
+    public function getColor(): object
     {
         return $this->color;
     }
 
-    public function getFoam()
+    public function getFoam(): object
     {
         return $this->foam;
     }
 
-    public function getScent()
+    public function getScent(): object
     {
         return $this->scent;
     }
 
-    public function getTaste()
+    public function getTaste(): object
     {
         return $this->taste;
     }
+}
+
+function buildBeer($beer)
+{
+    // TODO: validation
+    return new Beer(
+        $beer->styleName,
+        $beer->styleCountry,
+        $beer->description,
+        $beer->strength,
+        $beer->color,
+        $beer->foam,
+        $beer->scent,
+        $beer->taste
+    );
 }

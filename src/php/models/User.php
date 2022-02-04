@@ -1,17 +1,18 @@
 <?php
 
 
-class User {
-  private $email;
-  private $password;
-  private $username;
+class User
+{
+    private $email;
+    private $password;
+    private $username;
 
-  public function __construct(string $email, string $password, string $username)
-  {
-    $this->email = $email;
-    $this->password = $password;
-    $this->username = $username;
-  }
+    public function __construct(string $email, string $password, string $username)
+    {
+        $this->email = $email;
+        $this->password = $password;
+        $this->username = $username;
+    }
 
     public function getEmail(): string
     {
@@ -42,6 +43,10 @@ class User {
     {
         $this->username = $username;
     }
+}
 
-
+function buildUser($user)
+{
+    // TODO: validation
+    return new User($user->email, $user->password, $user->username);
 }

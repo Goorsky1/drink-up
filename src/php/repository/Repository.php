@@ -1,11 +1,11 @@
 <?php
 
-abstract class Repository {
-    protected $connection;
+abstract class Repository
+{
+    protected $database;
 
-    function findOne($id) {}
-
-    function findAll() {}
-
-    function save() {}
+    public function __construct($db)
+    {
+        $this->database = $db;
+    }
 }

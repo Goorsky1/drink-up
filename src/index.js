@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './public/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import LoginForm from './components/LoginForm';
+import ExampleQuestion from './components/ExampleQuestion';
+import Results from './components/Results';
 
 ReactDOM.render(
   <React.StrictMode>
-    <LoginForm />
+    <Results />
   </React.StrictMode>,
   document.getElementById('root')
 );

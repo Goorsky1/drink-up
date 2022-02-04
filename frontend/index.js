@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './public/index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import LoginForm from './components/LoginForm';
-import ExampleQuestion from './components/ExampleQuestion';
-import Results from './components/Results';
+import App from './src/App';
+import reportWebVitals from './src/reportWebVitals';
+import LoginForm from './src/components/LoginForm';
+import ExampleQuestion from './src/components/ExampleQuestion';
+import Results from './src/components/Results';
 
 ReactDOM.render(
   <React.StrictMode>

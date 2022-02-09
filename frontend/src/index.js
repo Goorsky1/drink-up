@@ -1,15 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './public/index.css';
-import App from './src/App';
-import reportWebVitals from './src/reportWebVitals';
-import LoginForm from './src/components/LoginForm';
-import ExampleQuestion from './src/components/ExampleQuestion';
-import Results from './src/components/Results';
+// import '../public/index.css';
+import './assets/App.css';
+import reportWebVitals from './reportWebVitals';
+import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Results />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

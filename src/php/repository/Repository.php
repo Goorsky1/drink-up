@@ -1,5 +1,6 @@
 <?php
 
+require_once './php/Database.php';
 abstract class Repository
 {
     protected $database;

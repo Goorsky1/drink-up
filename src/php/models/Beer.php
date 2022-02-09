@@ -10,6 +10,7 @@ class Beer
     private $foam;
     private $scent;
     private $taste;
+    private $beerLikeId;
 
     public function __construct(
         string $styleName,
@@ -69,6 +70,16 @@ class Beer
     public function getTaste(): object
     {
         return $this->taste;
+    }
+
+    public function getBeerLikeId(): int
+    {
+        return $this->beerLikeId;
+    }
+
+    public function setBeerLikeId(int $beerLikeId)
+    {
+        $this->beerLikeId = $beerLikeId;
     }
 }
 

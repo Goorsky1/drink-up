@@ -23,5 +23,9 @@ class BeerController
 
   function findBeerByUserResponse()
   {
+    $data = $_POST;
+    foreach ($data as $i) {
+      echo $i;
+    }
   }
 }

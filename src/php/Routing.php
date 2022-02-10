@@ -1,5 +1,6 @@
 <?php
-
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Headers: *");
 require_once './php/controllers/BeerController.php';
 require_once './php/controllers/UserController.php';
 require_once './php/Database.php';
@@ -27,8 +28,9 @@ class Router
     }
 
     $connection = (new Database())->connect();
+    $repository = (new BeerRepository($connection));
     $controller = self::$routes[$action];
-    $object = new $controller($connection);
+    $object = new $controller($repository, $connection);
     $action = $action ?: 'index';
 
     $id = $urlParts[1] ?? '';

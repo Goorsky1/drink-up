@@ -9,7 +9,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { ThemeProvider } from '@mui/material/styles';
-import { validateEmail, validatePassword } from '../utils/Validators';
+// import { validateEmail, validatePassword } from '../utils/Validators';
 import { useNavigate } from 'react-router-dom';
 import { theme } from '../assets/Theme';
 
@@ -19,10 +19,10 @@ export default function SignIn() {
     password: '',
   });
 
-  const [errors, setErrors] = useState({
-    email: 0,
-    password: 0,
-  });
+  // const [errors, setErrors] = useState({
+  //   email: 0,
+  //   password: 0,
+  // });
 
   const navigate = useNavigate();
 
@@ -62,10 +62,6 @@ export default function SignIn() {
                   ...values,
                   email: e.target.value,
                 });
-                setErrors({
-                  ...errors,
-                  email: validateEmail(values.email),
-                });
               }}
               margin="normal"
               variant="standard"
@@ -76,8 +72,6 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
-              error={errors.email}
-              helperText={errors.email ? 'Enter a valid email' : ''}
             />
             <TextField
               value={values.password}
@@ -85,10 +79,6 @@ export default function SignIn() {
                 setValues({
                   ...values,
                   password: e.target.value,
-                });
-                setErrors({
-                  ...errors,
-                  password: validatePassword(values.password),
                 });
               }}
               margin="normal"
@@ -100,12 +90,6 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
-              error={errors.password}
-              helperText={
-                errors.password
-                  ? 'Password must be 6 to 30 characters long'
-                  : ''
-              }
             />
             <FormControlLabel
               control={<Checkbox value="remember" />}

@@ -51,7 +51,7 @@ class UserController
 
     $user = $this->repository->findOneByEmail($email);
 
-    if (!$user || $user->getPassword() !== password_hash($password, "PASSWORD_BCRYPT")) {
+    if (!$user || $user->getPassword() !== password_hash($password, PASSWORD_DEFAULT)) {
       http_response_code(400);
       return "Invalid email or password";
     }
@@ -69,7 +69,6 @@ class UserController
 
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $confirmedPassword = $_POST['confirmedPassword'];
     $username = $_POST['username'];
 
     $user = $this->repository->findOneByEmail($email);
@@ -78,7 +77,7 @@ class UserController
       return http_response_code(409);
     }
 
-    if (empty($email) || empty($password) || empty($confirmedPassword) || empty($username)) {
+    if (empty($email) || empty($password) || empty($username)) {
       return http_response_code(400);
     }
 

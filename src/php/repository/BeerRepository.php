@@ -5,9 +5,15 @@ require_once "./php/models/Beer.php";
 
 class BeerRepository extends Repository
 {
+
+  public function __construct($db)
+  {
+    parent::__construct($db);
+  }
+
   public function findAll()
   {
-    $stmt = $this->database->connect()->prepare('
+    $stmt = $this->database->prepare('
             SELECT * FROM public.beer
         ');
     $stmt->execute();
@@ -23,7 +29,7 @@ class BeerRepository extends Repository
 
   public function findOneByStyleName($styleName)
   {
-    $stmt = $this->database->connect()->prepare('
+    $stmt = $this->database->prepare('
             SELECT * FROM public.beer WHERE style_name = :style_name
         ');
     $stmt->bindParam(':style_name', $styleName, PDO::PARAM_STR);

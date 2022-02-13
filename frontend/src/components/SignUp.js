@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
@@ -14,16 +14,17 @@ import {
   validatePassword,
 } from '../utils/Validators';
 import { useNavigate } from 'react-router-dom';
+import { registerUser } from '../Api/Api';
 
 export default function SignUp() {
-  const [values, setValues] = React.useState({
+  const [values, setValues] = useState({
     email: '',
     password: '',
     confirmPassword: '',
     username: '',
   });
 
-  const [errors, setErrors] = React.useState({
+  const [errors, setErrors] = useState({
     email: false,
     password: false,
     confirmPassword: false,
@@ -31,24 +32,31 @@ export default function SignUp() {
 
   const navigate = useNavigate();
 
+  useEffect(() => {}, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrors({
-      ...errors,
+    const err = {
       email: validateEmail(values.email),
       password: validatePassword(values.password),
       confirmPassword: validateConfirmPassword(
         values.password,
         values.confirmPassword
       ),
-    });
-    const data = new FormData(e.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-      confirmPassword: data.get('confirmPassword'),
-      username: data.get('username'),
-    });
+    };
+    setErrors(err);
+    if (Object.values(err).every((v) => !v)) {
+      const data = new FormData(e.currentTarget);
+
+      registerUser(data);
+      navigate('../home');
+      console.log({
+        email: data.get('email'),
+        password: data.get('password'),
+        confirmPassword: data.get('confirmPassword'),
+        username: data.get('username'),
+      });
+    }
   };
 
   return (

@@ -1,25 +1,26 @@
 import axios from 'axios';
 
-export const postBeerSurvey = (data) => {
-  axios
-    .post('http://localhost:9000/findBeerByUserResponse', data)
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+export const postBeerSurvey = async (data) => {
+  console.log('in', data);
+  try {
+    const response = await axios.post(
+      'http://localhost:9000/findBeerByUserResponse',
+      data
+    );
+    console.log('out', response.data);
+  } catch (e) {
+    console.error(e);
+  }
 };
 
-export const registerUser = (data) => {
-  axios
-    .post('http://localhost:9000/register', data)
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+export const registerUser = async (data) => {
+  console.log('in', data);
+  try {
+    const response = await axios.post('http://localhost:9000/register', data);
+    console.log('out', response.data);
+  } catch (e) {
+    console.error(e);
+  }
 };
 
 export const getResults = () => {

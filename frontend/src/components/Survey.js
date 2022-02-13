@@ -12,26 +12,6 @@ function Survey() {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log('uf');
-    console.log(result);
-    console.log(color);
-    console.log(strength);
-    console.log(country);
-    console.log(taste);
-    console.log(scent);
-    console.log(foam);
-  });
-
-  const [result, setResult] = useState({
-    color: '',
-    strength: '',
-    country: '',
-    taste: '',
-    scent: '',
-    foam: '',
-  });
-
   const [color, setColor] = useState('');
   const [strength, setStrength] = useState('');
   const [country, setCountry] = useState('');
@@ -39,22 +19,10 @@ function Survey() {
   const [scent, setScent] = useState('');
   const [foam, setFoam] = useState('');
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     setQuestion(question + 1);
-    console.log(result);
-    postBeerSurvey(result);
+    await postBeerSurvey({ color, strength, country, taste, scent, foam });
     navigate('../results');
-  };
-
-  const fetchResult = () => {
-    setResult({
-      color: color,
-      strength: strength,
-      country: country,
-      taste: taste,
-      scent: scent,
-      foam: foam,
-    });
   };
 
   const handleClick = (answer) => {
@@ -247,22 +215,19 @@ function Survey() {
           </Button>
         </Container>
       )}
-      {question === 7 &&
-        (() => {
-          fetchResult();
-        }) && (
-          <Container component="main" maxWidth="xs">
-            <Typography component="h1" variant="h3">
-              Submit the answers or take the survey again
-            </Typography>
-            <Button style={btnStyle} onClick={() => setQuestion(1)}>
-              Go Back
-            </Button>
-            <Button style={btnStyle} onClick={() => handleSubmit()}>
-              Submit
-            </Button>
-          </Container>
-        )}
+      {question === 7 && (
+        <Container component="main" maxWidth="xs">
+          <Typography component="h1" variant="h3">
+            Submit the answers or take the survey again
+          </Typography>
+          <Button style={btnStyle} onClick={() => setQuestion(1)}>
+            Go Back
+          </Button>
+          <Button style={btnStyle} onClick={handleSubmit}>
+            Submit
+          </Button>
+        </Container>
+      )}
     </ThemeProvider>
   );
 }

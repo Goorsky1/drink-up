@@ -28,9 +28,8 @@ class Router
     }
 
     $connection = (new Database())->connect();
-    $repository = (new BeerRepository($connection));
     $controller = self::$routes[$action];
-    $object = new $controller($repository, $connection);
+    $object = new $controller($connection);
     $action = $action ?: 'index';
 
     $id = $urlParts[1] ?? '';

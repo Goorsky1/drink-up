@@ -14,7 +14,7 @@ function Results() {
         <Typography component="h1" variant="h3">
           Our top choices for you!
         </Typography>
-        <Beer styleName="lager" image="lager.jpg" />
+        {/* <Beer styleName="lager" image="lager.jpg" /> */}
       </Container>
     </ThemeProvider>
   );

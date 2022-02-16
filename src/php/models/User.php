@@ -65,7 +65,7 @@ class User
 function buildUser($user): object
 {
     // TODO: validation
-    return new User($user->email, $user->password, $user->username);
+    return new User($user['email'], $user['password'], $user['username']);
 }
 
 

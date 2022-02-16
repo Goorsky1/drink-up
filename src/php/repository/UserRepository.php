@@ -13,14 +13,13 @@ class UserRepository extends Repository
 
   public function findOneByEmail($email)
   {
-    $stmt = $this->database->prepare('
-            SELECT * FROM public.user WHERE email = :email
-        ');
-    $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-    $stmt->execute();
+    $stmt = $this->database->prepare("
+            SELECT * FROM public.user WHERE email = ?
+        ");
+    $stmt->execute([$email]);
 
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
+    echo $user;
     if ($user == false) {
       return null;
     }

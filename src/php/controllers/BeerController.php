@@ -4,28 +4,26 @@ require_once './php/repository/BeerRepository.php';
 
 class BeerController
 {
-  private $beerRepository;
+  private $repository;
 
-  public function __construct($beerRepository, $db)
+  public function __construct($db, $repository = 'BeerRepository')
   {
-    $this->beerRepository = new $beerRepository($db);
+    $this->repository = new $repository($db);
   }
 
   function getBeers()
   {
-    return $this->beerRepository->findAll();
+    return $this->repository->findAll();
   }
 
   function getBeer($styleName)
   {
-    return $this->beerRepository->findOneByStyleName($styleName);
+    return $this->repository->findOneByStyleName($styleName);
   }
 
   function findBeerByUserResponse()
   {
     $data = $_POST;
-    foreach ($data as $i) {
-      echo $i;
-    }
+    return $this->repository->findOneBySurveyAnswers($data);
   }
 }

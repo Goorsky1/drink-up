@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { theme, btnStyle } from '../assets/Theme';
 import Container from '@mui/material/Container';
 import { ThemeProvider } from '@mui/material/styles';
@@ -13,16 +13,26 @@ function Survey() {
   const navigate = useNavigate();
 
   const [color, setColor] = useState('');
-  const [strength, setStrength] = useState('');
+  const [strength, setStrength] = useState(0);
   const [country, setCountry] = useState('');
   const [taste, setTaste] = useState('');
   const [scent, setScent] = useState('');
   const [foam, setFoam] = useState('');
+  const [bitterness, setBitterness] = useState(0);
 
   const handleSubmit = async () => {
     setQuestion(question + 1);
-    await postBeerSurvey({ color, strength, country, taste, scent, foam });
-    navigate('../results');
+    const result = await postBeerSurvey({
+      color,
+      strength,
+      country,
+      taste,
+      scent,
+      foam,
+      bitterness,
+    });
+    console.log(result);
+    navigate('../results', { state: { beer: result } });
   };
 
   const handleClick = (answer) => {
@@ -44,6 +54,9 @@ function Survey() {
         break;
       case 6:
         setFoam(answer);
+        break;
+      case 7:
+        setBitterness(answer);
         break;
       default:
         break;
@@ -73,12 +86,6 @@ function Survey() {
           <Button style={btnStyle} onClick={() => handleClick('red')}>
             Red
           </Button>
-          <Button style={btnStyle} onClick={() => handleClick('fancy')}>
-            Fancy color
-          </Button>
-          <Button style={btnStyle} onClick={() => handleClick('none')}>
-            Doesn't matter
-          </Button>
         </Container>
       )}
       {question === 2 && (
@@ -86,26 +93,20 @@ function Survey() {
           <Typography component="h1" variant="h3">
             How strong should it be?
           </Typography>
-          <Button style={btnStyle} onClick={() => handleClick('0')}>
-            0%
-          </Button>
-          <Button style={btnStyle} onClick={() => handleClick('3')}>
+          <Button style={btnStyle} onClick={() => handleClick(3)}>
             0.5% - 3%
           </Button>
-          <Button style={btnStyle} onClick={() => handleClick('5')}>
+          <Button style={btnStyle} onClick={() => handleClick(5)}>
             3% - 5%
           </Button>
-          <Button style={btnStyle} onClick={() => handleClick('7')}>
+          <Button style={btnStyle} onClick={() => handleClick(7)}>
             5.5% - 7%
           </Button>
-          <Button style={btnStyle} onClick={() => handleClick('10')}>
+          <Button style={btnStyle} onClick={() => handleClick(10)}>
             8% - 10%
           </Button>
-          <Button style={btnStyle} onClick={() => handleClick('11')}>
+          <Button style={btnStyle} onClick={() => handleClick(11)}>
             &gt;10%
-          </Button>
-          <Button style={btnStyle} onClick={() => handleClick('none')}>
-            Doesn't matter
           </Button>
         </Container>
       )}
@@ -132,9 +133,6 @@ function Survey() {
           <Button style={btnStyle} onClick={() => handleClick('rest')}>
             Rest of the world
           </Button>
-          <Button style={btnStyle} onClick={() => handleClick('none')}>
-            Doesn't matter
-          </Button>
         </Container>
       )}
       {question === 4 && (
@@ -144,6 +142,9 @@ function Survey() {
           </Typography>
           <Button style={btnStyle} onClick={() => handleClick('bitter')}>
             Bitter
+          </Button>
+          <Button style={btnStyle} onClick={() => handleClick('malty')}>
+            Malty
           </Button>
           <Button style={btnStyle} onClick={() => handleClick('sour')}>
             Sour
@@ -162,9 +163,6 @@ function Survey() {
           </Button>
           <Button style={btnStyle} onClick={() => handleClick('coffee')}>
             Coffee
-          </Button>
-          <Button style={btnStyle} onClick={() => handleClick('none')}>
-            Doesn't matter
           </Button>
         </Container>
       )}
@@ -185,6 +183,9 @@ function Survey() {
           <Button style={btnStyle} onClick={() => handleClick('citrus')}>
             Citrus fruits
           </Button>
+          <Button style={btnStyle} onClick={() => handleClick('fruits')}>
+            Fruits
+          </Button>
           <Button style={btnStyle} onClick={() => handleClick('herbs')}>
             Herbs/Flowers
           </Button>
@@ -193,9 +194,6 @@ function Survey() {
           </Button>
           <Button style={btnStyle} onClick={() => handleClick('coffee')}>
             Coffee
-          </Button>
-          <Button style={btnStyle} onClick={() => handleClick('none')}>
-            Doesn't matter
           </Button>
         </Container>
       )}
@@ -210,12 +208,31 @@ function Survey() {
           <Button style={btnStyle} onClick={() => handleClick('little')}>
             Just a little
           </Button>
-          <Button style={btnStyle} onClick={() => handleClick('none')}>
-            Doesn't matter
-          </Button>
         </Container>
       )}
       {question === 7 && (
+        <Container component="main" maxWidth="xs">
+          <Typography component="h1" variant="h3">
+            How bitter do you want your beer?
+          </Typography>
+          <Button style={btnStyle} onClick={() => handleClick(1)}>
+            Not at all
+          </Button>
+          <Button style={btnStyle} onClick={() => handleClick(2)}>
+            A little
+          </Button>
+          <Button style={btnStyle} onClick={() => handleClick(3)}>
+            Regular
+          </Button>
+          <Button style={btnStyle} onClick={() => handleClick(4)}>
+            Very
+          </Button>
+          <Button style={btnStyle} onClick={() => handleClick(5)}>
+            Super Bitter
+          </Button>
+        </Container>
+      )}
+      {question === 8 && (
         <Container component="main" maxWidth="xs">
           <Typography component="h1" variant="h3">
             Submit the answers or take the survey again

@@ -9,9 +9,9 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { ThemeProvider } from '@mui/material/styles';
-// import { validateEmail, validatePassword } from '../utils/Validators';
 import { useNavigate } from 'react-router-dom';
 import { theme } from '../assets/Theme';
+import { loginUser } from '../Api/Api';
 
 export default function SignIn() {
   const [values, setValues] = useState({
@@ -26,13 +26,18 @@ export default function SignIn() {
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    try {
+      await loginUser({
+        email: data.get('email'),
+        password: data.get('password'),
+      });
+    } catch (e) {
+      console.error(e);
+    }
+    console.log({});
   };
 
   return (

@@ -20,7 +20,7 @@ function HomePage() {
               navigate('../survey');
             }}
           >
-            Beer Picker™
+            Beer Picker
           </Button>
           <Button
             fullWidth

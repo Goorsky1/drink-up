@@ -63,7 +63,7 @@ export default function SignUp() {
           }}
         >
           <Typography component="h1" variant="h3">
-            Sign up
+            Sign Up
           </Typography>
           <Box
             component="form"

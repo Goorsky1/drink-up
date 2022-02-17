@@ -46,7 +46,7 @@ export default function SignIn() {
           }}
         >
           <Typography component="h1" variant="h3">
-            Sign in
+            Sign In
           </Typography>
           <Box
             component="form"
@@ -89,10 +89,6 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" />}
-              label="Remember me"
             />
             <Button
               type="submit"

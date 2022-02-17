@@ -29,41 +29,29 @@ class BeerRepository extends Repository
 
   public function findOneByStyleName($styleName)
   {
-    $stmt = $this->database->prepare('
-            SELECT * FROM public.beer WHERE styleName = :styleName
+    try {
+      $stmt = $this->database->prepare('
+            SELECT * FROM public.beer WHERE styleName = ?
         ');
-    $stmt->bindParam(':styleName', $styleName, PDO::PARAM_STR);
-    $stmt->execute();
+      $stmt->execute([$styleName]);
 
-    $beer = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if ($beer == false) {
-      return null;
+      $beer = $stmt->fetch(PDO::FETCH_ASSOC);
+      return buildBeer($beer);
+    } catch (PDOException $e) {
+      die('Beer not found' . $e->getMessage());
     }
-
-    return buildBeer($beer);
   }
 
   public function findOneBySurveyAnswers($data)
   {
-    $color = $data['color'];
-    $strength = $data['strength'];
-    $country = $data['country'];
-    $scent = $data['scent'];
-    $taste = $data['taste'];
-    $foam = $data['foam'];
-    $bitterness = $data['bitterness'];
-
     $properties = generateSubsets();
     $queryBuilder = generateQuery();
 
-    // foreach ($properties as $subset)
     for ($i = 0; $i < count($properties); $i++) {
       $query = "
       SELECT \"styleName\" FROM public.beer WHERE
       ";
       $queryArgs = [];
-      // foreach ($subset as $index)
       for ($j = 0; $j < count($properties[$i]); $j++) {
         if ($j) {
           $query .= "and";
@@ -83,97 +71,5 @@ class BeerRepository extends Repository
         return $styleName;
       }
     }
-
-    // $stmt = $this->database->prepare("
-    //         SELECT \"styleName\" FROM public.beer WHERE color = ? AND strength = ?
-    //         AND \"styleCountry\" = ? AND ? = ANY(scent) AND ? = ANY(taste)
-    //         AND foam = ? AND bitterness = ?
-    // ");
-    // $stmt->execute([$color, $strength, $country, $scent, $taste, $foam, $bitterness]);
-
-    // $styleName = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    // if (!($styleName == "")) {
-    //   foreach ($styleName as $i) {
-    //     echo $i;
-    //     echo " ";
-    //   }
-    //   return $styleName;
-    // }
-
-    // $stmt = $this->database->prepare("
-    //         SELECT \"styleName\" FROM public.beer WHERE color = ? AND strength = ? AND \"styleCountry\" = ?
-    //         AND ? = ANY(scent) AND ? = ANY(taste) AND bitterness = ?
-    // ");
-    // $stmt->execute([$color, $strength, $country, $scent, $taste, $bitterness]);
-    // $styleName = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    // if (!($styleName == "")) {
-    //   foreach ($styleName as $i) {
-    //     echo $i;
-    //     echo " ";
-    //   }
-    //   return $styleName;
-    // }
-
-    // $stmt = $this->database->prepare("
-    //         SELECT \"styleName\" FROM public.beer WHERE color = ? AND strength = ? AND \"styleCountry\" = ?
-    //         AND ? = ANY(scent) AND ? = ANY(taste) AND foam = ?
-    // ");
-    // $stmt->execute([$color, $strength, $country, $scent, $taste, $foam]);
-    // $styleName = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    // if (!($styleName == "")) {
-    //   foreach ($styleName as $i) {
-    //     echo $i;
-    //     echo " ";
-    //   }
-    //   return $styleName;
-    // }
-
-    // $stmt = $this->database->prepare("
-    //         SELECT \"styleName\" FROM public.beer WHERE strength = ? AND \"styleCountry\" = ?
-    //         AND ? = ANY(scent) AND ? = ANY(taste) AND foam = ? AND bitterness = ?
-    // ");
-    // $stmt->execute([$strength, $country, $scent, $taste, $foam, $bitterness]);
-    // $styleName = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    // if (!($styleName == "")) {
-    //   foreach ($styleName as $i) {
-    //     echo $i;
-    //     echo " ";
-    //   }
-    //   return $styleName;
-    // }
-
-    // $stmt = $this->database->prepare("
-    //         SELECT \"styleName\" FROM public.beer WHERE color = ? AND strength = ?
-    //         AND ? = ANY(scent) AND ? = ANY(taste) AND foam = ? AND bitterness = ?
-    // ");
-    // $stmt->execute([$color, $strength, $scent, $taste, $foam, $bitterness]);
-    // $styleName = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    // if (!($styleName == "")) {
-    //   foreach ($styleName as $i) {
-    //     echo $i;
-    //     echo " ";
-    //   }
-    //   return $styleName;
-    // }
-
-    // $stmt = $this->database->prepare("
-    //         SELECT \"styleName\" FROM public.beer WHERE color = ? AND strength = ? AND \"styleCountry\" = ?
-    //         AND ? = ANY(scent) AND ? = ANY(taste) AND foam = ? AND bitterness = ?
-    // ");
-    // $stmt->execute([$color, $strength, $country, $scent, $taste, $foam, $bitterness]);
-    // $styleName = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    // if (!($styleName == "")) {
-    //   foreach ($styleName as $i) {
-    //     echo $i;
-    //     echo " ";
-    //   }
-    //   return $styleName;
-    // }
   }
 }

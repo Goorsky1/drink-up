@@ -1,6 +1,5 @@
 <?php
 
-$_POST = json_decode(file_get_contents('php://input'), true);
 require_once './php/controllers/BeerController.php';
 require_once './php/controllers/UserController.php';
 require_once './php/Database.php';

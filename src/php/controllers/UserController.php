@@ -36,9 +36,6 @@ class UserController
       return "Method not allowed";
     }
 
-    echo $_POST['email'];
-    echo $_POST['password'];
-
 
     if (!isset($_POST['email']) || !isset($_POST['password'])) {
       http_response_code(400);
@@ -76,13 +73,6 @@ class UserController
       return http_response_code(405);
     }
     $data = $_POST;
-    foreach ($data as $dupa) {
-      echo $dupa;
-      echo " ";
-    }
-    // $email = $_POST['email'];
-    // $password = $_POST['password'];
-    // $username = $_POST['username'];
 
     $email = $data['email'];
     $password = $data['password'];

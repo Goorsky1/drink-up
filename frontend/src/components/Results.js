@@ -1,5 +1,6 @@
 import React from 'react';
 
+// import '../assets/img/lager.jpg';
 import { theme } from '../assets/Theme';
 import Container from '@mui/material/Container';
 import { ThemeProvider } from '@mui/material/styles';

@@ -48,6 +48,12 @@ export default function SignUp() {
 
       registerUser(data);
       navigate('../home');
+      console.log({
+        email: data.get('email'),
+        password: data.get('password'),
+        confirmPassword: data.get('confirmPassword'),
+        username: data.get('username'),
+      });
     }
   };
 

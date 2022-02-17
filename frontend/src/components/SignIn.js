@@ -19,6 +19,11 @@ export default function SignIn() {
     password: '',
   });
 
+  // const [errors, setErrors] = useState({
+  //   email: 0,
+  //   password: 0,
+  // });
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -32,6 +37,7 @@ export default function SignIn() {
     } catch (e) {
       console.error(e);
     }
+    console.log({});
   };
 
   return (

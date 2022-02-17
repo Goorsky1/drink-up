@@ -31,7 +31,6 @@ function Survey() {
       foam,
       bitterness,
     });
-    console.log(result);
     navigate('../results', { state: { beer: result } });
   };
 

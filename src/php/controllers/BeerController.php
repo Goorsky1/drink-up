@@ -23,6 +23,8 @@ class BeerController
 
   function findBeerByUserResponse()
   {
+
+    $_POST = json_decode(file_get_contents('php://input'), true);
     $data = $_POST;
     return $this->repository->findOneBySurveyAnswers($data);
   }

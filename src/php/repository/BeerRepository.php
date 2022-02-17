@@ -66,7 +66,6 @@ class BeerRepository extends Repository
       if (!($styleName == "")) {
         foreach ($styleName as $i) {
           echo $i;
-          echo " ";
         }
         return $styleName;
       }

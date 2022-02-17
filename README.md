@@ -37,6 +37,6 @@ W tym ekranie po wysłaniu pytań, aplikacja zwraca nazwę stylu proponowanego p
 ![Sign Up page](./frontend/src/assets/img/signup.png)
 ![Sign In page](./frontend/src/assets/img/signin.png)
 ![Home page](./frontend/src/assets/img/home.png)
-![Survey page](./frontend/src/assets/img/survey1.png)
+![Survey page](./frontend/src/assets/img/survey.png)
 ![Survey mobile](./frontend/src/assets/img/survey2.png)
 ![Results](./frontend/src/assets/img/result.png)

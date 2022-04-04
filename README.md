@@ -1,7 +1,3 @@
-# Link do repozytorium:
-
-<https://github.com/Kaponn/drink-up>
-
 # Uruchamianie projektu:
 
 Aby uruchomić projekt naley sklonować repozytorium lub pobrać kod źródłowy.

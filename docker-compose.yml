@@ -10,7 +10,7 @@ services:
       dockerfile: Dockerfile
       context: ./nginx
     ports:
-      - "80:80"
+      - '80:80'
 
   frontend:
     build:
@@ -32,7 +32,10 @@ services:
     volumes:
       - ./backend:/backend
   db:
-    image: postgres:alpine
+    # image: postgres:alpine
+    build:
+      context: ./postgres
+      dockerfile: Dockerfile
     environment:
       POSTGRES_PASSWORD: psswrd
     restart: always

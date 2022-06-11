@@ -4,5 +4,5 @@ COPY package.json ./
 COPY package-lock.json ./
 COPY ./ ./
 RUN npm i
-RUN npm install @mui/styled-engine
+RUN chown -R node:node ./node_modules
 CMD ["npm", "run", "start"]
